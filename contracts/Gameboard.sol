@@ -29,4 +29,18 @@ contract Gameboard {
     function getBoard() external view returns (uint8, uint8, uint32, uint32) {
         return (width, height, color1, color2);
     }
+
+    /**
+     * @notice set new gameboard params
+     * @param width_  board width
+     * @param height_  board height
+     * @param color1_  board color 1
+     * @param color2_  board color 2
+     */
+    function setBoard(uint8 width_, uint8 height_, uint32 color1_, uint32 color2_) external {
+        width = width_;
+        height = height_;
+        color1 = color1_;
+        color2 = color2_;
+    }
 }
