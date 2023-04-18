@@ -10,6 +10,7 @@
     "hardhat": "2.13.0",
     "hardhat-deploy": "0.11.25",
     "hardhat-storage-layout": "0.1.7",
+    "nethereum-codegen": "^1.0.24",
     "solc": "0.8.16"
   },
   "devDependencies": {
@@ -70,7 +71,7 @@
     "prepare": "husky install",
     "clean": "hardhat clean",
     "typechain": "TS_NODE_TRANSPILE_ONLY=true hardhat --config ./hardhat.base.config.ts typechain",
-    "compile": "npm run typechain && hardhat compile",
+    "compile": "npm run typechain && hardhat compile && npm run nethereum",
     "compile-not-viair": "VIA_IR=false npm run typechain && VIA_IR=false hardhat compile",
     "coverage": "VIA_IR=false hardhat coverage --solcoverjs ./.solcover.js --temp artifacts --testfiles \"./test/**/*.ts\"",
     "lint": "npm run lint:sol && npm run lint:ts && npm run prettier:check",
@@ -86,6 +87,7 @@
     "size-contracts": "hardhat size-contracts",
     "docgen": "hardhat docgen",
     "test": "hardhat test --typecheck",
-    "report:gas": "REPORT_GAS=true hardhat test"
+    "report:gas": "REPORT_GAS=true hardhat test",
+    "nethereum": "node ./scripts/nethereum-codegen.js"
   }
 }

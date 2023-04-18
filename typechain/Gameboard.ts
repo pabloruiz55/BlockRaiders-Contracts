@@ -4,8 +4,11 @@
 import type {
   BaseContract,
   BigNumber,
+  BigNumberish,
   BytesLike,
   CallOverrides,
+  ContractTransaction,
+  Overrides,
   PopulatedTransaction,
   Signer,
   utils,
@@ -26,6 +29,7 @@ export interface GameboardInterface extends utils.Interface {
     "color2()": FunctionFragment;
     "getBoard()": FunctionFragment;
     "height()": FunctionFragment;
+    "setBoard(uint8,uint8,uint32,uint32)": FunctionFragment;
     "width()": FunctionFragment;
   };
 
@@ -35,6 +39,7 @@ export interface GameboardInterface extends utils.Interface {
       | "color2"
       | "getBoard"
       | "height"
+      | "setBoard"
       | "width"
   ): FunctionFragment;
 
@@ -42,12 +47,22 @@ export interface GameboardInterface extends utils.Interface {
   encodeFunctionData(functionFragment: "color2", values?: undefined): string;
   encodeFunctionData(functionFragment: "getBoard", values?: undefined): string;
   encodeFunctionData(functionFragment: "height", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "setBoard",
+    values: [
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>
+    ]
+  ): string;
   encodeFunctionData(functionFragment: "width", values?: undefined): string;
 
   decodeFunctionResult(functionFragment: "color1", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "color2", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "getBoard", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "height", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "setBoard", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "width", data: BytesLike): Result;
 
   events: {};
@@ -90,6 +105,14 @@ export interface Gameboard extends BaseContract {
 
     height(overrides?: CallOverrides): Promise<[number]>;
 
+    setBoard(
+      width_: PromiseOrValue<BigNumberish>,
+      height_: PromiseOrValue<BigNumberish>,
+      color1_: PromiseOrValue<BigNumberish>,
+      color2_: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     width(overrides?: CallOverrides): Promise<[number]>;
   };
 
@@ -103,6 +126,14 @@ export interface Gameboard extends BaseContract {
 
   height(overrides?: CallOverrides): Promise<number>;
 
+  setBoard(
+    width_: PromiseOrValue<BigNumberish>,
+    height_: PromiseOrValue<BigNumberish>,
+    color1_: PromiseOrValue<BigNumberish>,
+    color2_: PromiseOrValue<BigNumberish>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   width(overrides?: CallOverrides): Promise<number>;
 
   callStatic: {
@@ -115,6 +146,14 @@ export interface Gameboard extends BaseContract {
     ): Promise<[number, number, number, number]>;
 
     height(overrides?: CallOverrides): Promise<number>;
+
+    setBoard(
+      width_: PromiseOrValue<BigNumberish>,
+      height_: PromiseOrValue<BigNumberish>,
+      color1_: PromiseOrValue<BigNumberish>,
+      color2_: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     width(overrides?: CallOverrides): Promise<number>;
   };
@@ -130,6 +169,14 @@ export interface Gameboard extends BaseContract {
 
     height(overrides?: CallOverrides): Promise<BigNumber>;
 
+    setBoard(
+      width_: PromiseOrValue<BigNumberish>,
+      height_: PromiseOrValue<BigNumberish>,
+      color1_: PromiseOrValue<BigNumberish>,
+      color2_: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     width(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
@@ -141,6 +188,14 @@ export interface Gameboard extends BaseContract {
     getBoard(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     height(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    setBoard(
+      width_: PromiseOrValue<BigNumberish>,
+      height_: PromiseOrValue<BigNumberish>,
+      color1_: PromiseOrValue<BigNumberish>,
+      color2_: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
 
     width(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
