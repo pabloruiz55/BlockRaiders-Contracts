@@ -1,0 +1,49 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Gameboard.sol": {
+      "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity 0.8.16;\n\n/**\n * @title \n * @author \n * @notice \n */\ncontract Gameboard {\n    uint8 public width;\n    uint8 public height;\n    uint32 public color1;\n    uint32 public color2;\n\n    constructor(uint8 width_, uint8 height_, uint32 color1_, uint32 color2_){\n        width = width_;\n        height = height_;\n        color1 = color1_;\n        color2 = color2_;\n    }\n\n    /**\n     * @notice returns gameboard parameters\n     * @return width\n     * @return height\n     * @return color1\n     * @return color2\n     */\n    function getBoard() external view returns(uint8, uint8, uint32, uint32){\n        return (width, height, color1, color2);\n    }\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200,
+      "details": {
+        "yulDetails": {
+          "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+        }
+      }
+    },
+    "viaIR": true,
+    "outputSelection": {
+      "*": {
+        "*": [
+          "storageLayout",
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "evm.gasEstimates",
+          "storageLayout",
+          "devdoc",
+          "userdoc"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    },
+    "libraries": {
+      "": {
+        "__CACHE_BREAKER__": "0x00000000d41867734bbee4c6863d9255b2b06ac1"
+      }
+    }
+  }
+}
