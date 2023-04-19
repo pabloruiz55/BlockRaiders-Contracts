@@ -1,46 +1,38 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.16;
 
+struct GameboardParams {
+    uint8 width;
+    uint8 height;
+    uint32 color1;
+    uint32 color2;
+}
+
 /**
  * @title
  * @author
  * @notice
  */
 contract Gameboard {
-    uint8 public width;
-    uint8 public height;
-    uint32 public color1;
-    uint32 public color2;
+    GameboardParams public gameboardParams;
 
-    constructor(uint8 width_, uint8 height_, uint32 color1_, uint32 color2_) {
-        width = width_;
-        height = height_;
-        color1 = color1_;
-        color2 = color2_;
+    constructor(GameboardParams memory gameboardParams_) {
+        gameboardParams = gameboardParams_;
     }
 
     /**
      * @notice returns gameboard parameters
-     * @return width
-     * @return height
-     * @return color1
-     * @return color2
+     * @return gameboardParams
      */
-    function getBoard() external view returns (uint8, uint8, uint32, uint32) {
-        return (width, height, color1, color2);
+    function getBoard() external view returns (GameboardParams memory) {
+        return gameboardParams;
     }
 
     /**
      * @notice set new gameboard params
-     * @param width_  board width
-     * @param height_  board height
-     * @param color1_  board color 1
-     * @param color2_  board color 2
+     * @param gameboardParams_  new gameboard params
      */
-    function setBoard(uint8 width_, uint8 height_, uint32 color1_, uint32 color2_) external {
-        width = width_;
-        height = height_;
-        color1 = color1_;
-        color2 = color2_;
+    function setBoard(GameboardParams calldata gameboardParams_) external {
+        gameboardParams = gameboardParams_;
     }
 }

@@ -5,15 +5,14 @@ const deployFunc: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const { deployments, getNamedAccounts } = hre;
   const { deployer } = await getNamedAccounts();
   const { deploy } = deployments;
-  const deployResult = await deploy("Gameboard", {
-    args: [[5, 6, 0xff0000, 0x00ff00]],
+  const deployResult = await deploy("GameboardFactory", {
     from: deployer,
     gasLimit: 680000,
   });
-  console.log(`"Gameboard deployed at ${deployResult.address}`);
+  console.log(`"GameboardFactory deployed at ${deployResult.address}`);
   return hre.network.live; // prevents re execution on live networks
 };
 export default deployFunc;
 
-deployFunc.id = "deployed_Gameboard"; // id required to prevent re-execution
-deployFunc.tags = ["Gameboard"];
+deployFunc.id = "deployed_GameboardFactory"; // id required to prevent re-execution
+deployFunc.tags = ["GameboardFactory"];

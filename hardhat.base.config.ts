@@ -63,6 +63,17 @@ const config: HardhatUserConfig = {
       url: "https://eth-goerli.g.alchemy.com/v2/" + alchemyApiKey,
       tags: ["testnet"],
     },
+    polygonZkevm: {
+      accounts: {
+        count: 10,
+        initialIndex: 0,
+        mnemonic,
+        path: "m/44'/60'/0'/0",
+      },
+      chainId: 1442,
+      url: "https://rpc.public.zkevm-test.net",
+      tags: ["testnet"],
+    },
   },
   paths: {
     artifacts: "./artifacts",
