@@ -19,5 +19,9 @@ namespace Gameboard.Gameboard.ContractDefinition
         public virtual uint Color1 { get; set; }
         [Parameter("uint32", "color2", 4)]
         public virtual uint Color2 { get; set; }
+        [Parameter("address", "token", 5)]
+        public virtual string Token { get; set; }
+        [Parameter("uint256", "initialPool", 6)]
+        public virtual BigInteger InitialPool { get; set; }
     }
 }

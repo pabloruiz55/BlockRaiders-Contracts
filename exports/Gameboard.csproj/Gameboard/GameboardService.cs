@@ -42,6 +42,17 @@ namespace Gameboard.Gameboard
             ContractHandler = web3.Eth.GetContractHandler(contractAddress);
         }
 
+        public Task<BigInteger> GameboardDataQueryAsync(GameboardDataFunction gameboardDataFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<GameboardDataFunction, BigInteger>(gameboardDataFunction, blockParameter);
+        }
+
+        
+        public Task<BigInteger> GameboardDataQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<GameboardDataFunction, BigInteger>(null, blockParameter);
+        }
+
         public Task<GameboardParamsOutputDTO> GameboardParamsQueryAsync(GameboardParamsFunction gameboardParamsFunction, BlockParameter blockParameter = null)
         {
             return ContractHandler.QueryDeserializingToObjectAsync<GameboardParamsFunction, GameboardParamsOutputDTO>(gameboardParamsFunction, blockParameter);
