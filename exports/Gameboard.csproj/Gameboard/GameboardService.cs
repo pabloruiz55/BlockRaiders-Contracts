@@ -42,15 +42,14 @@ namespace Gameboard.Gameboard
             ContractHandler = web3.Eth.GetContractHandler(contractAddress);
         }
 
-        public Task<BigInteger> GameboardDataQueryAsync(GameboardDataFunction gameboardDataFunction, BlockParameter blockParameter = null)
+        public Task<GameboardDataOutputDTO> GameboardDataQueryAsync(GameboardDataFunction gameboardDataFunction, BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryAsync<GameboardDataFunction, BigInteger>(gameboardDataFunction, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GameboardDataFunction, GameboardDataOutputDTO>(gameboardDataFunction, blockParameter);
         }
 
-        
-        public Task<BigInteger> GameboardDataQueryAsync(BlockParameter blockParameter = null)
+        public Task<GameboardDataOutputDTO> GameboardDataQueryAsync(BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryAsync<GameboardDataFunction, BigInteger>(null, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GameboardDataFunction, GameboardDataOutputDTO>(null, blockParameter);
         }
 
         public Task<GameboardParamsOutputDTO> GameboardParamsQueryAsync(GameboardParamsFunction gameboardParamsFunction, BlockParameter blockParameter = null)
@@ -71,6 +70,32 @@ namespace Gameboard.Gameboard
         public Task<GetBoardOutputDTO> GetBoardQueryAsync(BlockParameter blockParameter = null)
         {
             return ContractHandler.QueryDeserializingToObjectAsync<GetBoardFunction, GetBoardOutputDTO>(null, blockParameter);
+        }
+
+        public Task<string> PlayRequestAsync(PlayFunction playFunction)
+        {
+             return ContractHandler.SendRequestAsync(playFunction);
+        }
+
+        public Task<TransactionReceipt> PlayRequestAndWaitForReceiptAsync(PlayFunction playFunction, CancellationTokenSource cancellationToken = null)
+        {
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(playFunction, cancellationToken);
+        }
+
+        public Task<string> PlayRequestAsync(BigInteger bet)
+        {
+            var playFunction = new PlayFunction();
+                playFunction.Bet = bet;
+            
+             return ContractHandler.SendRequestAsync(playFunction);
+        }
+
+        public Task<TransactionReceipt> PlayRequestAndWaitForReceiptAsync(BigInteger bet, CancellationTokenSource cancellationToken = null)
+        {
+            var playFunction = new PlayFunction();
+                playFunction.Bet = bet;
+            
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(playFunction, cancellationToken);
         }
 
         public Task<string> SetBoardRequestAsync(SetBoardFunction setBoardFunction)

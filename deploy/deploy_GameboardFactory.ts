@@ -7,7 +7,7 @@ const deployFunc: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const { deploy } = deployments;
   const deployResult = await deploy("GameboardFactory", {
     from: deployer,
-    gasLimit: 680000,
+    gasLimit: 6800000,
   });
   console.log(`"GameboardFactory deployed at ${deployResult.address}`);
   return hre.network.live; // prevents re execution on live networks

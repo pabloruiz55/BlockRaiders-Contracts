@@ -23,5 +23,7 @@ namespace GameboardFactory.GameboardFactory.ContractDefinition
         public virtual string Token { get; set; }
         [Parameter("uint256", "initialPool", 6)]
         public virtual BigInteger InitialPool { get; set; }
+        [Parameter("uint256", "bet", 7)]
+        public virtual BigInteger Bet { get; set; }
     }
 }

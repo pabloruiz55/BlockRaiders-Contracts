@@ -11,7 +11,11 @@ namespace Gameboard.Gameboard.ContractDefinition
 
     public class GameboardDataBase 
     {
-        [Parameter("uint256", "creationDate", 1)]
+        [Parameter("uint8", "gameStatus", 1)]
+        public virtual byte GameStatus { get; set; }
+        [Parameter("uint256", "creationDate", 2)]
         public virtual BigInteger CreationDate { get; set; }
+        [Parameter("uint256", "totalPool", 3)]
+        public virtual BigInteger TotalPool { get; set; }
     }
 }

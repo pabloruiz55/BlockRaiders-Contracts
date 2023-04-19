@@ -17,3 +17,4 @@ export default deployFunc;
 
 deployFunc.id = "deployed_Gameboard"; // id required to prevent re-execution
 deployFunc.tags = ["Gameboard"];
+deployFunc.skip = () => Promise.resolve(true);
