@@ -58,6 +58,15 @@ contract Gameboard {
         SafeERC20.safeTransferFrom(gameboardParams.token, msg.sender, address(this), bet_);
     }
 
+    function playFree(uint256 bet_) external {
+        if (bet_ < gameboardParams.bet) revert InsufficientBet();
+        if (gameboardData.gameStatus == GameStatus.started) revert GameAlreadyStarted();
+        if (gameboardData.gameStatus == GameStatus.finished) revert GameAlreadyFinished();
+
+        gameboardData.gameStatus = GameStatus.started;
+        gameboardData.totalPool += bet_;
+    }
+
     /**
      * @notice returns gameboard parameters
      * @return gameboardParams
