@@ -118,17 +118,17 @@ namespace GameboardFactory.GameboardFactory
             return ContractHandler.QueryDeserializingToObjectAsync<GetAllBoardsFunction, GetAllBoardsOutputDTO>(null, blockParameter);
         }
 
-        public Task<GetBoardOutputDTO> GetBoardQueryAsync(GetBoardFunction getBoardFunction, BlockParameter blockParameter = null)
+        public Task<GetBoardByIdOutputDTO> GetBoardByIdQueryAsync(GetBoardByIdFunction getBoardByIdFunction, BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryDeserializingToObjectAsync<GetBoardFunction, GetBoardOutputDTO>(getBoardFunction, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GetBoardByIdFunction, GetBoardByIdOutputDTO>(getBoardByIdFunction, blockParameter);
         }
 
-        public Task<GetBoardOutputDTO> GetBoardQueryAsync(BigInteger id, BlockParameter blockParameter = null)
+        public Task<GetBoardByIdOutputDTO> GetBoardByIdQueryAsync(BigInteger id, BlockParameter blockParameter = null)
         {
-            var getBoardFunction = new GetBoardFunction();
-                getBoardFunction.Id = id;
+            var getBoardByIdFunction = new GetBoardByIdFunction();
+                getBoardByIdFunction.Id = id;
             
-            return ContractHandler.QueryDeserializingToObjectAsync<GetBoardFunction, GetBoardOutputDTO>(getBoardFunction, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GetBoardByIdFunction, GetBoardByIdOutputDTO>(getBoardByIdFunction, blockParameter);
         }
 
         public Task<BigInteger> GetGameboardsLengthQueryAsync(GetGameboardsLengthFunction getGameboardsLengthFunction, BlockParameter blockParameter = null)

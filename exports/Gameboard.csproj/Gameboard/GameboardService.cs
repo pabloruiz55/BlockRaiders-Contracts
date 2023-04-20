@@ -124,6 +124,32 @@ namespace Gameboard.Gameboard
              return ContractHandler.SendRequestAndWaitForReceiptAsync(playFreeFunction, cancellationToken);
         }
 
+        public Task<string> SetAllGridsRequestAsync(SetAllGridsFunction setAllGridsFunction)
+        {
+             return ContractHandler.SendRequestAsync(setAllGridsFunction);
+        }
+
+        public Task<TransactionReceipt> SetAllGridsRequestAndWaitForReceiptAsync(SetAllGridsFunction setAllGridsFunction, CancellationTokenSource cancellationToken = null)
+        {
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(setAllGridsFunction, cancellationToken);
+        }
+
+        public Task<string> SetAllGridsRequestAsync(List<List<GridData>> griddata)
+        {
+            var setAllGridsFunction = new SetAllGridsFunction();
+                setAllGridsFunction.Griddata = griddata;
+            
+             return ContractHandler.SendRequestAsync(setAllGridsFunction);
+        }
+
+        public Task<TransactionReceipt> SetAllGridsRequestAndWaitForReceiptAsync(List<List<GridData>> griddata, CancellationTokenSource cancellationToken = null)
+        {
+            var setAllGridsFunction = new SetAllGridsFunction();
+                setAllGridsFunction.Griddata = griddata;
+            
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(setAllGridsFunction, cancellationToken);
+        }
+
         public Task<string> SetBoardRequestAsync(SetBoardFunction setBoardFunction)
         {
              return ContractHandler.SendRequestAsync(setBoardFunction);
@@ -148,6 +174,36 @@ namespace Gameboard.Gameboard
                 setBoardFunction.Gameboardparams = gameboardparams;
             
              return ContractHandler.SendRequestAndWaitForReceiptAsync(setBoardFunction, cancellationToken);
+        }
+
+        public Task<string> SetGridRequestAsync(SetGridFunction setGridFunction)
+        {
+             return ContractHandler.SendRequestAsync(setGridFunction);
+        }
+
+        public Task<TransactionReceipt> SetGridRequestAndWaitForReceiptAsync(SetGridFunction setGridFunction, CancellationTokenSource cancellationToken = null)
+        {
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(setGridFunction, cancellationToken);
+        }
+
+        public Task<string> SetGridRequestAsync(BigInteger x, BigInteger y, GridData griddata)
+        {
+            var setGridFunction = new SetGridFunction();
+                setGridFunction.X = x;
+                setGridFunction.Y = y;
+                setGridFunction.Griddata = griddata;
+            
+             return ContractHandler.SendRequestAsync(setGridFunction);
+        }
+
+        public Task<TransactionReceipt> SetGridRequestAndWaitForReceiptAsync(BigInteger x, BigInteger y, GridData griddata, CancellationTokenSource cancellationToken = null)
+        {
+            var setGridFunction = new SetGridFunction();
+                setGridFunction.X = x;
+                setGridFunction.Y = y;
+                setGridFunction.Griddata = griddata;
+            
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(setGridFunction, cancellationToken);
         }
     }
 }

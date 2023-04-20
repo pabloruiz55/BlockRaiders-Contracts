@@ -3,9 +3,12 @@ pragma solidity 0.8.16;
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
+struct GridData {
+    uint256 terrain;
+}
+
 struct GameboardParams {
-    uint8 width;
-    uint8 height;
+    GridData[][] grids;
     uint32 color1;
     uint32 color2;
     IERC20 token; // TODO: if == address(0) the pool could be in ETH
@@ -14,6 +17,7 @@ struct GameboardParams {
 }
 
 struct GameboardData {
+    GridData[][] grids;
     GameStatus gameStatus;
     uint256 creationDate;
     uint256 totalPool;
@@ -42,6 +46,7 @@ contract Gameboard {
     constructor(GameboardParams memory gameboardParams_) {
         gameboardParams = gameboardParams_;
         gameboardData = GameboardData({
+            grids: gameboardParams_.grids,
             gameStatus: GameStatus.iddle,
             creationDate: block.timestamp,
             totalPool: gameboardParams_.initialPool
@@ -81,5 +86,13 @@ contract Gameboard {
      */
     function setBoard(GameboardParams calldata gameboardParams_) external {
         gameboardParams = gameboardParams_;
+    }
+
+    function setGrid(uint256 x, uint256 y, GridData calldata gridData_) public {
+        gameboardData.grids[x][y] = gridData_;
+    }
+
+    function setAllGrids(GridData[][] calldata gridData_) external {
+        gameboardData.grids = gridData_;
     }
 }
