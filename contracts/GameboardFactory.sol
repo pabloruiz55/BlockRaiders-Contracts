@@ -37,7 +37,7 @@ contract GameboardFactory {
         return gameboards.length;
     }
 
-    function getBoard(
+    function getBoardById(
         uint256 id_
     )
         external

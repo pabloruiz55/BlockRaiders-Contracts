@@ -11,11 +11,13 @@ namespace Gameboard.Gameboard.ContractDefinition
 
     public class GameboardDataBase 
     {
-        [Parameter("uint8", "gameStatus", 1)]
+        [Parameter("tuple[][]", "grids", 1)]
+        public virtual List<List<GridData>> Grids { get; set; }
+        [Parameter("uint8", "gameStatus", 2)]
         public virtual byte GameStatus { get; set; }
-        [Parameter("uint256", "creationDate", 2)]
+        [Parameter("uint256", "creationDate", 3)]
         public virtual BigInteger CreationDate { get; set; }
-        [Parameter("uint256", "totalPool", 3)]
+        [Parameter("uint256", "totalPool", 4)]
         public virtual BigInteger TotalPool { get; set; }
     }
 }
