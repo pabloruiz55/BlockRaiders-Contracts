@@ -1,5 +1,29 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.16;
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+
+struct GameboardParams {
+    uint8 width;
+    uint8 height;
+    uint32 color1;
+    uint32 color2;
+    IERC20 token; // TODO: if == address(0) the pool could be in ETH
+    uint256 initialPool; // TODO: could be lower type
+    uint256 bet; // TODO: could be lower type
+}
+
+struct GameboardData {
+    GameStatus gameStatus;
+    uint256 creationDate;
+    uint256 totalPool;
+}
+
+enum GameStatus {
+    iddle,
+    started,
+    finished
+}
 
 /**
  * @title
@@ -7,40 +31,46 @@ pragma solidity 0.8.16;
  * @notice
  */
 contract Gameboard {
-    uint8 public width;
-    uint8 public height;
-    uint32 public color1;
-    uint32 public color2;
+    // Custom Errors
+    error InsufficientBet();
+    error GameAlreadyStarted();
+    error GameAlreadyFinished();
 
-    constructor(uint8 width_, uint8 height_, uint32 color1_, uint32 color2_) {
-        width = width_;
-        height = height_;
-        color1 = color1_;
-        color2 = color2_;
+    GameboardParams public gameboardParams;
+    GameboardData public gameboardData;
+
+    constructor(GameboardParams memory gameboardParams_) {
+        gameboardParams = gameboardParams_;
+        gameboardData = GameboardData({
+            gameStatus: GameStatus.iddle,
+            creationDate: block.timestamp,
+            totalPool: gameboardParams_.initialPool
+        });
+    }
+
+    function play(uint256 bet_) external {
+        if (bet_ < gameboardParams.bet) revert InsufficientBet();
+        if (gameboardData.gameStatus == GameStatus.started) revert GameAlreadyStarted();
+        if (gameboardData.gameStatus == GameStatus.finished) revert GameAlreadyFinished();
+
+        gameboardData.gameStatus = GameStatus.started;
+        gameboardData.totalPool += bet_;
+        SafeERC20.safeTransferFrom(gameboardParams.token, msg.sender, address(this), bet_);
     }
 
     /**
      * @notice returns gameboard parameters
-     * @return width
-     * @return height
-     * @return color1
-     * @return color2
+     * @return gameboardParams
      */
-    function getBoard() external view returns (uint8, uint8, uint32, uint32) {
-        return (width, height, color1, color2);
+    function getBoard() external view returns (GameboardParams memory, GameboardData memory) {
+        return (gameboardParams, gameboardData);
     }
 
     /**
      * @notice set new gameboard params
-     * @param width_  board width
-     * @param height_  board height
-     * @param color1_  board color 1
-     * @param color2_  board color 2
+     * @param gameboardParams_  new gameboard params
      */
-    function setBoard(uint8 width_, uint8 height_, uint32 color1_, uint32 color2_) external {
-        width = width_;
-        height = height_;
-        color1 = color1_;
-        color2 = color2_;
+    function setBoard(GameboardParams calldata gameboardParams_) external {
+        gameboardParams = gameboardParams_;
     }
 }

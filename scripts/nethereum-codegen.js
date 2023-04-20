@@ -1,5 +1,6 @@
 const codegen = require("nethereum-codegen");
 const Gameboard = require("../artifacts/contracts/Gameboard.sol/Gameboard.json");
+const GameboardFactory = require("../artifacts/contracts/GameboardFactory.sol/GameboardFactory.json");
 
 async function main() {
   codegen.generateAllClasses(
@@ -8,6 +9,15 @@ async function main() {
     "Gameboard",
     "Gameboard",
     "exports/Gameboard.csproj",
+    0,
+  );
+
+  codegen.generateAllClasses(
+    JSON.stringify(GameboardFactory.abi),
+    GameboardFactory.bytecode,
+    "GameboardFactory",
+    "GameboardFactory",
+    "exports/GameboardFactory.csproj",
     0,
   );
 }

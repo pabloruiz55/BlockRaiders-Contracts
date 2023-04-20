@@ -42,26 +42,24 @@ namespace Gameboard.Gameboard
             ContractHandler = web3.Eth.GetContractHandler(contractAddress);
         }
 
-        public Task<uint> Color1QueryAsync(Color1Function color1Function, BlockParameter blockParameter = null)
+        public Task<GameboardDataOutputDTO> GameboardDataQueryAsync(GameboardDataFunction gameboardDataFunction, BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryAsync<Color1Function, uint>(color1Function, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GameboardDataFunction, GameboardDataOutputDTO>(gameboardDataFunction, blockParameter);
         }
 
-        
-        public Task<uint> Color1QueryAsync(BlockParameter blockParameter = null)
+        public Task<GameboardDataOutputDTO> GameboardDataQueryAsync(BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryAsync<Color1Function, uint>(null, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GameboardDataFunction, GameboardDataOutputDTO>(null, blockParameter);
         }
 
-        public Task<uint> Color2QueryAsync(Color2Function color2Function, BlockParameter blockParameter = null)
+        public Task<GameboardParamsOutputDTO> GameboardParamsQueryAsync(GameboardParamsFunction gameboardParamsFunction, BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryAsync<Color2Function, uint>(color2Function, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GameboardParamsFunction, GameboardParamsOutputDTO>(gameboardParamsFunction, blockParameter);
         }
 
-        
-        public Task<uint> Color2QueryAsync(BlockParameter blockParameter = null)
+        public Task<GameboardParamsOutputDTO> GameboardParamsQueryAsync(BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryAsync<Color2Function, uint>(null, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GameboardParamsFunction, GameboardParamsOutputDTO>(null, blockParameter);
         }
 
         public Task<GetBoardOutputDTO> GetBoardQueryAsync(GetBoardFunction getBoardFunction, BlockParameter blockParameter = null)
@@ -74,15 +72,30 @@ namespace Gameboard.Gameboard
             return ContractHandler.QueryDeserializingToObjectAsync<GetBoardFunction, GetBoardOutputDTO>(null, blockParameter);
         }
 
-        public Task<byte> HeightQueryAsync(HeightFunction heightFunction, BlockParameter blockParameter = null)
+        public Task<string> PlayRequestAsync(PlayFunction playFunction)
         {
-            return ContractHandler.QueryAsync<HeightFunction, byte>(heightFunction, blockParameter);
+             return ContractHandler.SendRequestAsync(playFunction);
         }
 
-        
-        public Task<byte> HeightQueryAsync(BlockParameter blockParameter = null)
+        public Task<TransactionReceipt> PlayRequestAndWaitForReceiptAsync(PlayFunction playFunction, CancellationTokenSource cancellationToken = null)
         {
-            return ContractHandler.QueryAsync<HeightFunction, byte>(null, blockParameter);
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(playFunction, cancellationToken);
+        }
+
+        public Task<string> PlayRequestAsync(BigInteger bet)
+        {
+            var playFunction = new PlayFunction();
+                playFunction.Bet = bet;
+            
+             return ContractHandler.SendRequestAsync(playFunction);
+        }
+
+        public Task<TransactionReceipt> PlayRequestAndWaitForReceiptAsync(BigInteger bet, CancellationTokenSource cancellationToken = null)
+        {
+            var playFunction = new PlayFunction();
+                playFunction.Bet = bet;
+            
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(playFunction, cancellationToken);
         }
 
         public Task<string> SetBoardRequestAsync(SetBoardFunction setBoardFunction)
@@ -95,37 +108,20 @@ namespace Gameboard.Gameboard
              return ContractHandler.SendRequestAndWaitForReceiptAsync(setBoardFunction, cancellationToken);
         }
 
-        public Task<string> SetBoardRequestAsync(byte width, byte height, uint color1, uint color2)
+        public Task<string> SetBoardRequestAsync(GameboardParams gameboardparams)
         {
             var setBoardFunction = new SetBoardFunction();
-                setBoardFunction.Width = width;
-                setBoardFunction.Height = height;
-                setBoardFunction.Color1 = color1;
-                setBoardFunction.Color2 = color2;
+                setBoardFunction.Gameboardparams = gameboardparams;
             
              return ContractHandler.SendRequestAsync(setBoardFunction);
         }
 
-        public Task<TransactionReceipt> SetBoardRequestAndWaitForReceiptAsync(byte width, byte height, uint color1, uint color2, CancellationTokenSource cancellationToken = null)
+        public Task<TransactionReceipt> SetBoardRequestAndWaitForReceiptAsync(GameboardParams gameboardparams, CancellationTokenSource cancellationToken = null)
         {
             var setBoardFunction = new SetBoardFunction();
-                setBoardFunction.Width = width;
-                setBoardFunction.Height = height;
-                setBoardFunction.Color1 = color1;
-                setBoardFunction.Color2 = color2;
+                setBoardFunction.Gameboardparams = gameboardparams;
             
              return ContractHandler.SendRequestAndWaitForReceiptAsync(setBoardFunction, cancellationToken);
-        }
-
-        public Task<byte> WidthQueryAsync(WidthFunction widthFunction, BlockParameter blockParameter = null)
-        {
-            return ContractHandler.QueryAsync<WidthFunction, byte>(widthFunction, blockParameter);
-        }
-
-        
-        public Task<byte> WidthQueryAsync(BlockParameter blockParameter = null)
-        {
-            return ContractHandler.QueryAsync<WidthFunction, byte>(null, blockParameter);
         }
     }
 }

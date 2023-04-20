@@ -21,31 +21,25 @@ namespace Gameboard.Gameboard.ContractDefinition
 
     public class GameboardDeploymentBase : ContractDeploymentMessage
     {
-        public static string BYTECODE = "0x6080346100b757601f6102f538819003918201601f19168301916001600160401b038311848410176100bc578084926080946040528339810103126100b757610047816100d2565b9065ffffffff000061005b602083016100d2565b61ff00610076606061006f604087016100e0565b95016100e0565b60ff69ffffffff0000000000006000549260301b1696169060018060501b031916179160081b16179160101b16171760005560405161020390816100f28239f35b600080fd5b634e487b7160e01b600052604160045260246000fd5b519060ff821682036100b757565b519063ffffffff821682036100b75756fe60806040818152600436101561001457600080fd5b600091823560e01c9081630ef26743146101ad575080633264a34b146101675780635115bdff146101425780639ededf7714610123578063bb632c4d1461008c5763ef60f12a1461006457600080fd5b3461008857816003193601126100885763ffffffff6020925460301c169051908152f35b5080fd5b50346100885760803660031901126100885760043560ff811680910361011f576024359060ff8216820361011b576044359063ffffffff9283831683036101175760643593841684036101175761ff0065ffffffff00009269ffffffff00000000000088549660301b169569ffffffffffffffffffff1916179160081b16179160101b161717825551f35b8580fd5b8380fd5b8280fd5b503461008857816003193601126100885760ff60209254169051908152f35b503461008857816003193601126100885763ffffffff6020925460101c169051908152f35b5034610088578160031936011261008857608091549080519160ff8116835260ff8160081c16602084015263ffffffff91828260101c169084015260301c166060820152f35b83903461008857816003193601126100885760ff6020925460081c168152f3fea2646970667358221220227c3d3e57f69ad1dc77108b42e11f473059bb3964173076043971e5892d1df164736f6c63430008100033";
+        public static string BYTECODE = "0x6080604052346101425761084360e0813803918261001c81610147565b9384928339810103126101425761003360e0610147565b61003c82610182565b80825261004b60208401610182565b9182602082015261005e60408501610190565b9081604082015261007160608601610190565b6060820181905260808601519092906001600160a01b03811681036101425760c09561ff00828565ffffffff000094608069ffffffff0000000000009801528960a08c01519b8c60a08401520151998a91015260ff600054916a0100000000000000000000600160f01b039060501b1698169061ffff60f01b16179160081b16179160101b16179160301b161717600055816001556002558060406101166060610147565b60008152426020820152015260ff1960035416600355426004556005556040516106a190816101a28239f35b600080fd5b6040519190601f01601f191682016001600160401b0381118382101761016c57604052565b634e487b7160e01b600052604160045260246000fd5b519060ff8216820361014257565b519063ffffffff821682036101425756fe6080604081815260048036101561001557600080fd5b60009260e0908435821c9081633264a34b146103b1575080636898f82b146101c5578063885915831461018b5780638a8c2bf5146101215763bc545c311461005c57600080fd5b3461011d57366003190112610119573560ff81168091036101195782549060243560ff811681036101155760443563ffffffff92838216820361011157606435938416840361011157608435926001600160a01b038416840361010d5761ff0065ffffffff00009269ffffffff00000000000095600160501b600160f01b039060501b169761ffff60f01b16179160081b16179160101b16179160301b161717825560a43560015560c43560025551f35b8780fd5b8680fd5b8480fd5b8280fd5b8380fd5b50828434610188578060031936011261018857546001546002549183519360ff8216855260ff8260081c16602086015263ffffffff90818360101c16908601528160301c16606085015260018060a01b039060501c16608084015260a083015260c0820152f35b80fd5b505090346101195782600319360112610119576060925060ff60035416915490600554916101bb82518095610520565b6020840152820152f35b5050346101195760208060031936011261011d57813560025481106103a15760035460ff8116600381101561038e576001811461037e5760021461036e5760ff191660011760035560055481810190811061035b57906102d19160055560018060a01b03865460501c168680875193868501906323b872dd60e01b8252336024870152306044870152606486015260648552610262608486610543565b61026b8761057b565b946102788a519687610543565b8786527f5361666545524332303a206c6f772d6c6576656c2063616c6c206661696c656488870152519082855af13d15610353573d916102b78361057b565b926102c489519485610543565b83523d898785013e610597565b8051806102dd57858551f35b818391810103126101155781015180159081150361011557610300578080858551f35b608492519162461bcd60e51b8352820152602a60248201527f5361666545524332303a204552433230206f7065726174696f6e20646964206e6044820152691bdd081cdd58d8d9595960b21b6064820152fd5b606091610597565b634e487b7160e01b865260118452602486fd5b845163c5a977b160e01b81528490fd5b855163ba26162b60e01b81528590fd5b634e487b7160e01b875260218552602487fd5b83516347d8345560e11b81528390fd5b82848787933461051c578160031936011261051c5760c0816103d4868594610543565b82815282602082015282878201528260608201528260808201528260a0820152015280848051610405606082610543565b828152826020820152015283519261041d8185610543565b81549260ff84168552602085019560ff8560081c1687528086019463ffffffff808260101c1687526060880190808360301c168252608089019160018060a01b03809460501c1683526001549460a08b019586526002549660c08c0197885281519961048a60608c610543565b60ff6003541690600382101561050957509084918b52549a60208b019b8c526005549c838c019d8e5283519e8f915160ff1682525160ff1690602001525116908c0152511660608a0152511660808801525160a08701525160c086015284019051906104f591610520565b516101008301525161012082015261014090f35b634e487b7160e01b815260218352602490fd5b5080fd5b90600382101561052d5752565b634e487b7160e01b600052602160045260246000fd5b90601f8019910116810190811067ffffffffffffffff82111761056557604052565b634e487b7160e01b600052604160045260246000fd5b67ffffffffffffffff811161056557601f01601f191660200190565b919290156105f957508151156105ab575090565b3b156105b45790565b60405162461bcd60e51b815260206004820152601d60248201527f416464726573733a2063616c6c20746f206e6f6e2d636f6e74726163740000006044820152606490fd5b82519091501561060c5750805190602001fd5b6040519062461bcd60e51b82528160208060048301528251908160248401526000935b828510610652575050604492506000838284010152601f80199101168101030190fd5b848101820151868601604401529381019385935061062f56fea26469706673582212207990ae0047378cefb890f9380528313b8637652e3dad75a7f73e00d105a4b52e64736f6c63430008100033";
         public GameboardDeploymentBase() : base(BYTECODE) { }
         public GameboardDeploymentBase(string byteCode) : base(byteCode) { }
-        [Parameter("uint8", "width_", 1)]
-        public virtual byte Width { get; set; }
-        [Parameter("uint8", "height_", 2)]
-        public virtual byte Height { get; set; }
-        [Parameter("uint32", "color1_", 3)]
-        public virtual uint Color1 { get; set; }
-        [Parameter("uint32", "color2_", 4)]
-        public virtual uint Color2 { get; set; }
+        [Parameter("tuple", "gameboardParams_", 1)]
+        public virtual GameboardParams Gameboardparams { get; set; }
     }
 
-    public partial class Color1Function : Color1FunctionBase { }
+    public partial class GameboardDataFunction : GameboardDataFunctionBase { }
 
-    [Function("color1", "uint32")]
-    public class Color1FunctionBase : FunctionMessage
+    [Function("gameboardData", typeof(GameboardDataOutputDTO))]
+    public class GameboardDataFunctionBase : FunctionMessage
     {
 
     }
 
-    public partial class Color2Function : Color2FunctionBase { }
+    public partial class GameboardParamsFunction : GameboardParamsFunctionBase { }
 
-    [Function("color2", "uint32")]
-    public class Color2FunctionBase : FunctionMessage
+    [Function("gameboardParams", typeof(GameboardParamsOutputDTO))]
+    public class GameboardParamsFunctionBase : FunctionMessage
     {
 
     }
@@ -58,12 +52,13 @@ namespace Gameboard.Gameboard.ContractDefinition
 
     }
 
-    public partial class HeightFunction : HeightFunctionBase { }
+    public partial class PlayFunction : PlayFunctionBase { }
 
-    [Function("height", "uint8")]
-    public class HeightFunctionBase : FunctionMessage
+    [Function("play")]
+    public class PlayFunctionBase : FunctionMessage
     {
-
+        [Parameter("uint256", "bet", 1)]
+        public virtual BigInteger Bet { get; set; }
     }
 
     public partial class SetBoardFunction : SetBoardFunctionBase { }
@@ -71,40 +66,48 @@ namespace Gameboard.Gameboard.ContractDefinition
     [Function("setBoard")]
     public class SetBoardFunctionBase : FunctionMessage
     {
-        [Parameter("uint8", "width_", 1)]
+        [Parameter("tuple", "gameboardParams_", 1)]
+        public virtual GameboardParams Gameboardparams { get; set; }
+    }
+
+
+
+
+
+
+
+    public partial class GameboardDataOutputDTO : GameboardDataOutputDTOBase { }
+
+    [FunctionOutput]
+    public class GameboardDataOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("uint8", "gameStatus", 1)]
+        public virtual byte GameStatus { get; set; }
+        [Parameter("uint256", "creationDate", 2)]
+        public virtual BigInteger CreationDate { get; set; }
+        [Parameter("uint256", "totalPool", 3)]
+        public virtual BigInteger TotalPool { get; set; }
+    }
+
+    public partial class GameboardParamsOutputDTO : GameboardParamsOutputDTOBase { }
+
+    [FunctionOutput]
+    public class GameboardParamsOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("uint8", "width", 1)]
         public virtual byte Width { get; set; }
-        [Parameter("uint8", "height_", 2)]
+        [Parameter("uint8", "height", 2)]
         public virtual byte Height { get; set; }
-        [Parameter("uint32", "color1_", 3)]
+        [Parameter("uint32", "color1", 3)]
         public virtual uint Color1 { get; set; }
-        [Parameter("uint32", "color2_", 4)]
+        [Parameter("uint32", "color2", 4)]
         public virtual uint Color2 { get; set; }
-    }
-
-    public partial class WidthFunction : WidthFunctionBase { }
-
-    [Function("width", "uint8")]
-    public class WidthFunctionBase : FunctionMessage
-    {
-
-    }
-
-    public partial class Color1OutputDTO : Color1OutputDTOBase { }
-
-    [FunctionOutput]
-    public class Color1OutputDTOBase : IFunctionOutputDTO 
-    {
-        [Parameter("uint32", "", 1)]
-        public virtual uint ReturnValue1 { get; set; }
-    }
-
-    public partial class Color2OutputDTO : Color2OutputDTOBase { }
-
-    [FunctionOutput]
-    public class Color2OutputDTOBase : IFunctionOutputDTO 
-    {
-        [Parameter("uint32", "", 1)]
-        public virtual uint ReturnValue1 { get; set; }
+        [Parameter("address", "token", 5)]
+        public virtual string Token { get; set; }
+        [Parameter("uint256", "initialPool", 6)]
+        public virtual BigInteger InitialPool { get; set; }
+        [Parameter("uint256", "bet", 7)]
+        public virtual BigInteger Bet { get; set; }
     }
 
     public partial class GetBoardOutputDTO : GetBoardOutputDTOBase { }
@@ -112,33 +115,13 @@ namespace Gameboard.Gameboard.ContractDefinition
     [FunctionOutput]
     public class GetBoardOutputDTOBase : IFunctionOutputDTO 
     {
-        [Parameter("uint8", "", 1)]
-        public virtual byte ReturnValue1 { get; set; }
-        [Parameter("uint8", "", 2)]
-        public virtual byte ReturnValue2 { get; set; }
-        [Parameter("uint32", "", 3)]
-        public virtual uint ReturnValue3 { get; set; }
-        [Parameter("uint32", "", 4)]
-        public virtual uint ReturnValue4 { get; set; }
-    }
-
-    public partial class HeightOutputDTO : HeightOutputDTOBase { }
-
-    [FunctionOutput]
-    public class HeightOutputDTOBase : IFunctionOutputDTO 
-    {
-        [Parameter("uint8", "", 1)]
-        public virtual byte ReturnValue1 { get; set; }
+        [Parameter("tuple", "", 1)]
+        public virtual GameboardParams ReturnValue1 { get; set; }
+        [Parameter("tuple", "", 2)]
+        public virtual GameboardData ReturnValue2 { get; set; }
     }
 
 
 
-    public partial class WidthOutputDTO : WidthOutputDTOBase { }
 
-    [FunctionOutput]
-    public class WidthOutputDTOBase : IFunctionOutputDTO 
-    {
-        [Parameter("uint8", "", 1)]
-        public virtual byte ReturnValue1 { get; set; }
-    }
 }
