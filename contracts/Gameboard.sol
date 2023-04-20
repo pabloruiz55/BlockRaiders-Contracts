@@ -8,7 +8,9 @@ struct GridData {
 }
 
 struct GameboardParams {
-    GridData[][] grids;
+    uint8 width;
+    uint8 height;
+    //GridData[][] grids;
     uint32 color1;
     uint32 color2;
     IERC20 token; // TODO: if == address(0) the pool could be in ETH
@@ -45,12 +47,15 @@ contract Gameboard {
 
     constructor(GameboardParams memory gameboardParams_) {
         gameboardParams = gameboardParams_;
-        gameboardData = GameboardData({
-            grids: gameboardParams_.grids,
-            gameStatus: GameStatus.iddle,
-            creationDate: block.timestamp,
-            totalPool: gameboardParams_.initialPool
-        });
+        gameboardData.gameStatus = GameStatus.iddle;
+        gameboardData.creationDate = block.timestamp;
+        gameboardData.totalPool = gameboardParams_.initialPool;
+        // gameboardData = GameboardData({
+        //     grids: gameboardParams_.grids,
+        //     gameStatus: GameStatus.iddle,
+        //     creationDate: block.timestamp,
+        //     totalPool: gameboardParams_.initialPool
+        // });
     }
 
     function play(uint256 bet_) external {
@@ -88,7 +93,7 @@ contract Gameboard {
         gameboardParams = gameboardParams_;
     }
 
-    function setGrid(uint256 x, uint256 y, GridData calldata gridData_) public {
+    function setGrid(uint256 x, uint256 y, GridData calldata gridData_) external {
         gameboardData.grids[x][y] = gridData_;
     }
 
