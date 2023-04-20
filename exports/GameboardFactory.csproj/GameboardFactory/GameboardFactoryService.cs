@@ -42,6 +42,32 @@ namespace GameboardFactory.GameboardFactory
             ContractHandler = web3.Eth.GetContractHandler(contractAddress);
         }
 
+        public Task<string> CreateFreeGameboardRequestAsync(CreateFreeGameboardFunction createFreeGameboardFunction)
+        {
+             return ContractHandler.SendRequestAsync(createFreeGameboardFunction);
+        }
+
+        public Task<TransactionReceipt> CreateFreeGameboardRequestAndWaitForReceiptAsync(CreateFreeGameboardFunction createFreeGameboardFunction, CancellationTokenSource cancellationToken = null)
+        {
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(createFreeGameboardFunction, cancellationToken);
+        }
+
+        public Task<string> CreateFreeGameboardRequestAsync(GameboardParams gameboardparams)
+        {
+            var createFreeGameboardFunction = new CreateFreeGameboardFunction();
+                createFreeGameboardFunction.Gameboardparams = gameboardparams;
+            
+             return ContractHandler.SendRequestAsync(createFreeGameboardFunction);
+        }
+
+        public Task<TransactionReceipt> CreateFreeGameboardRequestAndWaitForReceiptAsync(GameboardParams gameboardparams, CancellationTokenSource cancellationToken = null)
+        {
+            var createFreeGameboardFunction = new CreateFreeGameboardFunction();
+                createFreeGameboardFunction.Gameboardparams = gameboardparams;
+            
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(createFreeGameboardFunction, cancellationToken);
+        }
+
         public Task<string> CreateGameboardRequestAsync(CreateGameboardFunction createGameboardFunction)
         {
              return ContractHandler.SendRequestAsync(createGameboardFunction);

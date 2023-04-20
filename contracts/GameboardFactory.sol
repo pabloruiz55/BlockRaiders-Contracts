@@ -27,6 +27,12 @@ contract GameboardFactory {
         emit NewGameboard(msg.sender, gameboards.length, gameboardParams_);
     }
 
+    function createFreeGameboard(GameboardParams calldata gameboardParams_) external {
+        Gameboard gameboard = new Gameboard(gameboardParams_);
+        gameboards.push(gameboard);
+        emit NewGameboard(msg.sender, gameboards.length, gameboardParams_);
+    }
+
     function getGameboardsLength() external view returns (uint256) {
         return gameboards.length;
     }

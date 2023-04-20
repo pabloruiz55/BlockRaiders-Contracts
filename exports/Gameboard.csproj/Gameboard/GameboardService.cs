@@ -98,6 +98,32 @@ namespace Gameboard.Gameboard
              return ContractHandler.SendRequestAndWaitForReceiptAsync(playFunction, cancellationToken);
         }
 
+        public Task<string> PlayFreeRequestAsync(PlayFreeFunction playFreeFunction)
+        {
+             return ContractHandler.SendRequestAsync(playFreeFunction);
+        }
+
+        public Task<TransactionReceipt> PlayFreeRequestAndWaitForReceiptAsync(PlayFreeFunction playFreeFunction, CancellationTokenSource cancellationToken = null)
+        {
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(playFreeFunction, cancellationToken);
+        }
+
+        public Task<string> PlayFreeRequestAsync(BigInteger bet)
+        {
+            var playFreeFunction = new PlayFreeFunction();
+                playFreeFunction.Bet = bet;
+            
+             return ContractHandler.SendRequestAsync(playFreeFunction);
+        }
+
+        public Task<TransactionReceipt> PlayFreeRequestAndWaitForReceiptAsync(BigInteger bet, CancellationTokenSource cancellationToken = null)
+        {
+            var playFreeFunction = new PlayFreeFunction();
+                playFreeFunction.Bet = bet;
+            
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(playFreeFunction, cancellationToken);
+        }
+
         public Task<string> SetBoardRequestAsync(SetBoardFunction setBoardFunction)
         {
              return ContractHandler.SendRequestAsync(setBoardFunction);
