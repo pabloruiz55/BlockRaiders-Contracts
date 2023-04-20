@@ -11,17 +11,19 @@ namespace GameboardFactory.GameboardFactory.ContractDefinition
 
     public class GameboardParamsBase 
     {
-        [Parameter("tuple[][]", "grids", 1)]
-        public virtual List<List<GridData>> Grids { get; set; }
-        [Parameter("uint32", "color1", 2)]
+        [Parameter("uint8", "width", 1)]
+        public virtual byte Width { get; set; }
+        [Parameter("uint8", "height", 2)]
+        public virtual byte Height { get; set; }
+        [Parameter("uint32", "color1", 3)]
         public virtual uint Color1 { get; set; }
-        [Parameter("uint32", "color2", 3)]
+        [Parameter("uint32", "color2", 4)]
         public virtual uint Color2 { get; set; }
-        [Parameter("address", "token", 4)]
+        [Parameter("address", "token", 5)]
         public virtual string Token { get; set; }
-        [Parameter("uint256", "initialPool", 5)]
+        [Parameter("uint256", "initialPool", 6)]
         public virtual BigInteger InitialPool { get; set; }
-        [Parameter("uint256", "bet", 6)]
+        [Parameter("uint256", "bet", 7)]
         public virtual BigInteger Bet { get; set; }
     }
 }
