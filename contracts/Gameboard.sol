@@ -19,7 +19,7 @@ struct GameboardParams {
 }
 
 struct GameboardData {
-    uint256[10][10] grids;
+    uint256[16][10] grids;
     GameStatus gameStatus;
     uint256 creationDate;
     uint256 totalPool;
@@ -105,11 +105,11 @@ contract Gameboard {
         gameboardData.grids = gridData_;
     }
 
-    function getAllGrids() external view returns (uint256[10][10] memory) {
+    function getAllGrids() external view returns (uint256[16][10] memory) {
         return gameboardData.grids;
     }
 
-    function get1Darray(uint256 x) external view returns (uint256[10] memory) {
+    function get1Darray(uint256 x) external view returns (uint256[16] memory) {
         return gameboardData.grids[x];
     }
 }

@@ -11,7 +11,7 @@ namespace GameboardFactory.GameboardFactory.ContractDefinition
 
     public class GameboardDataBase 
     {
-        [Parameter("uint256[10][10]", "grids", 1)]
+        [Parameter("uint256[16][10]", "grids", 1)]
         public virtual List<List<BigInteger>> Grids { get; set; }
         [Parameter("uint8", "gameStatus", 2)]
         public virtual byte GameStatus { get; set; }
