@@ -97,7 +97,15 @@ contract Gameboard {
         gameboardData.grids[x][y] = gridData_;
     }
 
+    function getGrid(uint256 x, uint256 y) external view returns (GridData memory) {
+        return gameboardData.grids[x][y];
+    }
+
     function setAllGrids(GridData[10][16] calldata gridData_) external {
         gameboardData.grids = gridData_;
+    }
+
+    function getAllGrids() external view returns (GridData[10][16] memory) {
+        return gameboardData.grids;
     }
 }
