@@ -53,6 +53,7 @@ describe("Feature: create gameboards", () => {
         });
         it("THEN grid (0,0) has terrain 1", async () => {
           expect((await gameboard.getGrid(0, 0))[0].toNumber()).to.be.equal(1);
+          console.log((await gameboard.getAllGrids())[0][0].terrain);
         });
       });
       describe("AND all the grids are set with terrain 1", () => {
