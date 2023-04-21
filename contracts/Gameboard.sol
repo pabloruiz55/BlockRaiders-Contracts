@@ -19,7 +19,7 @@ struct GameboardParams {
 }
 
 struct GameboardData {
-    GridData[][] grids;
+    GridData[10][16] grids;
     GameStatus gameStatus;
     uint256 creationDate;
     uint256 totalPool;
@@ -97,7 +97,7 @@ contract Gameboard {
         gameboardData.grids[x][y] = gridData_;
     }
 
-    function setAllGrids(GridData[][] calldata gridData_) external {
+    function setAllGrids(GridData[10][16] calldata gridData_) external {
         gameboardData.grids = gridData_;
     }
 }

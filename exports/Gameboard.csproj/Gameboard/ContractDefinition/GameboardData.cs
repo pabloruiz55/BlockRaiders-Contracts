@@ -11,7 +11,7 @@ namespace Gameboard.Gameboard.ContractDefinition
 
     public class GameboardDataBase 
     {
-        [Parameter("tuple[][]", "grids", 1)]
+        [Parameter("tuple[10][16]", "grids", 1)]
         public virtual List<List<GridData>> Grids { get; set; }
         [Parameter("uint8", "gameStatus", 2)]
         public virtual byte GameStatus { get; set; }
