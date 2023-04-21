@@ -3,9 +3,9 @@ pragma solidity 0.8.16;
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
-struct GridData {
-    uint256 terrain;
-}
+// struct GridData {
+//     uint256 terrain;
+// }
 
 struct GameboardParams {
     uint8 width;
@@ -19,7 +19,7 @@ struct GameboardParams {
 }
 
 struct GameboardData {
-    GridData[10][16] grids;
+    uint256[10][10] grids;
     GameStatus gameStatus;
     uint256 creationDate;
     uint256 totalPool;
@@ -93,19 +93,23 @@ contract Gameboard {
         gameboardParams = gameboardParams_;
     }
 
-    function setGrid(uint256 x, uint256 y, GridData calldata gridData_) external {
+    function setGrid(uint256 x, uint256 y, uint256 gridData_) external {
         gameboardData.grids[x][y] = gridData_;
     }
 
-    function getGrid(uint256 x, uint256 y) external view returns (GridData memory) {
+    function getGrid(uint256 x, uint256 y) external view returns (uint256) {
         return gameboardData.grids[x][y];
     }
 
-    function setAllGrids(GridData[10][16] calldata gridData_) external {
+    function setAllGrids(uint256[10][10] calldata gridData_) external {
         gameboardData.grids = gridData_;
     }
 
-    function getAllGrids() external view returns (GridData[10][16] memory) {
+    function getAllGrids() external view returns (uint256[10][10] memory) {
         return gameboardData.grids;
+    }
+
+    function get1Darray(uint256 x) external view returns (uint256[10] memory) {
+        return gameboardData.grids[x];
     }
 }
