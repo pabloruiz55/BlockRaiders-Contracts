@@ -11,7 +11,12 @@ import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.s
  */
 contract GameboardFactory {
     // Events
-    event NewGameboard(address indexed creator_, uint256 id_, GameboardParams gameboardParams_);
+    event NewGameboard(
+        address indexed creator_,
+        address indexed gameboard,
+        uint256 id_,
+        GameboardParams gameboardParams_
+    );
 
     Gameboard[] public gameboards;
 
@@ -24,13 +29,13 @@ contract GameboardFactory {
             address(gameboard),
             gameboardParams_.initialPool
         );
-        emit NewGameboard(msg.sender, gameboards.length, gameboardParams_);
+        emit NewGameboard(msg.sender, address(gameboard), gameboards.length, gameboardParams_);
     }
 
     function createFreeGameboard(GameboardParams calldata gameboardParams_) external {
         Gameboard gameboard = new Gameboard(gameboardParams_);
         gameboards.push(gameboard);
-        emit NewGameboard(msg.sender, gameboards.length, gameboardParams_);
+        emit NewGameboard(msg.sender, address(gameboard), gameboards.length, gameboardParams_);
     }
 
     function getGameboardsLength() external view returns (uint256) {

@@ -62,6 +62,16 @@ namespace Gameboard.Gameboard
             return ContractHandler.QueryDeserializingToObjectAsync<GameboardParamsFunction, GameboardParamsOutputDTO>(null, blockParameter);
         }
 
+        public Task<GetAllGridsOutputDTO> GetAllGridsQueryAsync(GetAllGridsFunction getAllGridsFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryDeserializingToObjectAsync<GetAllGridsFunction, GetAllGridsOutputDTO>(getAllGridsFunction, blockParameter);
+        }
+
+        public Task<GetAllGridsOutputDTO> GetAllGridsQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryDeserializingToObjectAsync<GetAllGridsFunction, GetAllGridsOutputDTO>(null, blockParameter);
+        }
+
         public Task<GetBoardOutputDTO> GetBoardQueryAsync(GetBoardFunction getBoardFunction, BlockParameter blockParameter = null)
         {
             return ContractHandler.QueryDeserializingToObjectAsync<GetBoardFunction, GetBoardOutputDTO>(getBoardFunction, blockParameter);
@@ -70,6 +80,20 @@ namespace Gameboard.Gameboard
         public Task<GetBoardOutputDTO> GetBoardQueryAsync(BlockParameter blockParameter = null)
         {
             return ContractHandler.QueryDeserializingToObjectAsync<GetBoardFunction, GetBoardOutputDTO>(null, blockParameter);
+        }
+
+        public Task<GetGridOutputDTO> GetGridQueryAsync(GetGridFunction getGridFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryDeserializingToObjectAsync<GetGridFunction, GetGridOutputDTO>(getGridFunction, blockParameter);
+        }
+
+        public Task<GetGridOutputDTO> GetGridQueryAsync(BigInteger x, BigInteger y, BlockParameter blockParameter = null)
+        {
+            var getGridFunction = new GetGridFunction();
+                getGridFunction.X = x;
+                getGridFunction.Y = y;
+            
+            return ContractHandler.QueryDeserializingToObjectAsync<GetGridFunction, GetGridOutputDTO>(getGridFunction, blockParameter);
         }
 
         public Task<string> PlayRequestAsync(PlayFunction playFunction)
