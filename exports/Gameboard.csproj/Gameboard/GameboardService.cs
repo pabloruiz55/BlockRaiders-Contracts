@@ -62,29 +62,27 @@ namespace Gameboard.Gameboard
             return ContractHandler.QueryDeserializingToObjectAsync<GameboardParamsFunction, GameboardParamsOutputDTO>(null, blockParameter);
         }
 
-        public Task<List<BigInteger>> Get1DarrayQueryAsync(Get1DarrayFunction get1DarrayFunction, BlockParameter blockParameter = null)
+        public Task<Get1DarrayOutputDTO> Get1DarrayQueryAsync(Get1DarrayFunction get1DarrayFunction, BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryAsync<Get1DarrayFunction, List<BigInteger>>(get1DarrayFunction, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<Get1DarrayFunction, Get1DarrayOutputDTO>(get1DarrayFunction, blockParameter);
         }
 
-        
-        public Task<List<BigInteger>> Get1DarrayQueryAsync(BigInteger x, BlockParameter blockParameter = null)
+        public Task<Get1DarrayOutputDTO> Get1DarrayQueryAsync(BigInteger x, BlockParameter blockParameter = null)
         {
             var get1DarrayFunction = new Get1DarrayFunction();
                 get1DarrayFunction.X = x;
             
-            return ContractHandler.QueryAsync<Get1DarrayFunction, List<BigInteger>>(get1DarrayFunction, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<Get1DarrayFunction, Get1DarrayOutputDTO>(get1DarrayFunction, blockParameter);
         }
 
-        public Task<List<List<BigInteger>>> GetAllGridsQueryAsync(GetAllGridsFunction getAllGridsFunction, BlockParameter blockParameter = null)
+        public Task<GetAllGridsOutputDTO> GetAllGridsQueryAsync(GetAllGridsFunction getAllGridsFunction, BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryAsync<GetAllGridsFunction, List<List<BigInteger>>>(getAllGridsFunction, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GetAllGridsFunction, GetAllGridsOutputDTO>(getAllGridsFunction, blockParameter);
         }
 
-        
-        public Task<List<List<BigInteger>>> GetAllGridsQueryAsync(BlockParameter blockParameter = null)
+        public Task<GetAllGridsOutputDTO> GetAllGridsQueryAsync(BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryAsync<GetAllGridsFunction, List<List<BigInteger>>>(null, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GetAllGridsFunction, GetAllGridsOutputDTO>(null, blockParameter);
         }
 
         public Task<GetBoardOutputDTO> GetBoardQueryAsync(GetBoardFunction getBoardFunction, BlockParameter blockParameter = null)
@@ -97,19 +95,18 @@ namespace Gameboard.Gameboard
             return ContractHandler.QueryDeserializingToObjectAsync<GetBoardFunction, GetBoardOutputDTO>(null, blockParameter);
         }
 
-        public Task<BigInteger> GetGridQueryAsync(GetGridFunction getGridFunction, BlockParameter blockParameter = null)
+        public Task<GetGridOutputDTO> GetGridQueryAsync(GetGridFunction getGridFunction, BlockParameter blockParameter = null)
         {
-            return ContractHandler.QueryAsync<GetGridFunction, BigInteger>(getGridFunction, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GetGridFunction, GetGridOutputDTO>(getGridFunction, blockParameter);
         }
 
-        
-        public Task<BigInteger> GetGridQueryAsync(BigInteger x, BigInteger y, BlockParameter blockParameter = null)
+        public Task<GetGridOutputDTO> GetGridQueryAsync(BigInteger x, BigInteger y, BlockParameter blockParameter = null)
         {
             var getGridFunction = new GetGridFunction();
                 getGridFunction.X = x;
                 getGridFunction.Y = y;
             
-            return ContractHandler.QueryAsync<GetGridFunction, BigInteger>(getGridFunction, blockParameter);
+            return ContractHandler.QueryDeserializingToObjectAsync<GetGridFunction, GetGridOutputDTO>(getGridFunction, blockParameter);
         }
 
         public Task<string> PlayRequestAsync(PlayFunction playFunction)
@@ -174,7 +171,7 @@ namespace Gameboard.Gameboard
              return ContractHandler.SendRequestAndWaitForReceiptAsync(setAllGridsFunction, cancellationToken);
         }
 
-        public Task<string> SetAllGridsRequestAsync(List<List<BigInteger>> griddata)
+        public Task<string> SetAllGridsRequestAsync(List<List<GridData>> griddata)
         {
             var setAllGridsFunction = new SetAllGridsFunction();
                 setAllGridsFunction.Griddata = griddata;
@@ -182,7 +179,7 @@ namespace Gameboard.Gameboard
              return ContractHandler.SendRequestAsync(setAllGridsFunction);
         }
 
-        public Task<TransactionReceipt> SetAllGridsRequestAndWaitForReceiptAsync(List<List<BigInteger>> griddata, CancellationTokenSource cancellationToken = null)
+        public Task<TransactionReceipt> SetAllGridsRequestAndWaitForReceiptAsync(List<List<GridData>> griddata, CancellationTokenSource cancellationToken = null)
         {
             var setAllGridsFunction = new SetAllGridsFunction();
                 setAllGridsFunction.Griddata = griddata;
@@ -226,7 +223,7 @@ namespace Gameboard.Gameboard
              return ContractHandler.SendRequestAndWaitForReceiptAsync(setGridFunction, cancellationToken);
         }
 
-        public Task<string> SetGridRequestAsync(BigInteger x, BigInteger y, BigInteger griddata)
+        public Task<string> SetGridRequestAsync(BigInteger x, BigInteger y, GridData griddata)
         {
             var setGridFunction = new SetGridFunction();
                 setGridFunction.X = x;
@@ -236,7 +233,7 @@ namespace Gameboard.Gameboard
              return ContractHandler.SendRequestAsync(setGridFunction);
         }
 
-        public Task<TransactionReceipt> SetGridRequestAndWaitForReceiptAsync(BigInteger x, BigInteger y, BigInteger griddata, CancellationTokenSource cancellationToken = null)
+        public Task<TransactionReceipt> SetGridRequestAndWaitForReceiptAsync(BigInteger x, BigInteger y, GridData griddata, CancellationTokenSource cancellationToken = null)
         {
             var setGridFunction = new SetGridFunction();
                 setGridFunction.X = x;
